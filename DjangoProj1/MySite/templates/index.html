@@ -11,7 +11,7 @@
 
         <p><h2>Making a text analyzer</h2></p>
         <!-- <form>  action takes to the URL and method gives get/set-->
-        <form method="POST" action="/analyze/">
+        <form method="POST" action="/analyze/"> {% csrf_token %}
             <textarea name='text' style="margin: 0px; width: 886px; height: 117px;">  
 
             </textarea><br>

@@ -28,25 +28,25 @@ def analyzer(request):
         AnalayzedText = PunctuationRemover(djtext)
         params = {'purpose':': Removed Punctuations Text here','analyzed_text': AnalayzedText}
         print(AnalayzedText)
-        return render(request,'analyze.html',params)
-    elif (uppercase == "on"):
+        djtext = AnalayzedText
+    if (uppercase == "on"):
         AnalayzedText = Caps(djtext)
         params = {'purpose':': Uppercase Text here','analyzed_text': AnalayzedText}
         print(AnalayzedText)
-        return render(request,'analyze.html',params)
-    elif (removenewlines == "on"):
+        djtext = AnalayzedText
+    if (removenewlines == "on"):
         AnalayzedText = removeNewLines(djtext)
         params = {'purpose':': Removed New Lines here','analyzed_text': AnalayzedText}
         print(AnalayzedText)
-        return render(request,'analyze.html',params)
-    else:
-        params = {'purpose':': Not Removed Punctuations Text here','analyzed_text': djtext}
-        return render(request,'analyze.html',params)
+        djtext = AnalayzedText
+    # else:
+    #     params = {'purpose':': Not Removed Punctuations Text here','analyzed_text': djtext}
+    return render(request,'analyze.html',params)
 
 def removeNewLines(djtext):
     AnalayzedText = ''
     for char in djtext:
-        if char != '\n':
+        if char != '\n' and char != '\r':  # in case of POST check for '\r' also
             AnalayzedText += char
     return AnalayzedText
 
