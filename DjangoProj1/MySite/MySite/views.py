@@ -13,16 +13,16 @@ def hello(request):
 #     return "Hello"
 
 def date_now(request):
-    print(request.GET.get('text','dfault'))
+    print(request.POST.get('text','dfault'))
     now = datetime.datetime.now()
     html_date = "<html><body><h3> Now the time is %s </h3></body></html>" %now
     return HttpResponse(html_date)
 
 def analyzer(request):
-    djtext = request.GET.get('text','Default')
-    removepunc = request.GET.get('tick','TickOff')
-    uppercase = request.GET.get('upper','TickOff')
-    removenewlines = request.GET.get('removenew','TickOff')
+    djtext = request.POST.get('text','Default')
+    removepunc = request.POST.get('tick','TickOff')
+    uppercase = request.POST.get('upper','TickOff')
+    removenewlines = request.POST.get('removenew','TickOff')
     print(djtext,removepunc)
     if removepunc == "on":
         AnalayzedText = PunctuationRemover(djtext)
